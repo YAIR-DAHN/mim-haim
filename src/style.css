@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    direction: rtl;
+    font-family: 'Noto Sans Hebrew', 'Heebo', system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  html,
+  body {
+    @apply min-h-screen;
+  }
+
+  body {
+    @apply bg-surface-50 text-gray-800;
+  }
+}
+
+@layer components {
+
+  /* ===== Container ===== */
+  .container-custom {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl;
+  }
+
+  /* ===== Cards ===== */
+  .card {
+    @apply bg-white/80 backdrop-blur-sm rounded-2xl shadow-md p-6 border border-white/50 transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply hover:shadow-lg hover:border-primary-200/50;
+  }
+
+  /* ===== Form Elements ===== */
+  .form-label {
+    @apply block text-gray-700 text-sm font-semibold mb-2;
+  }
+
+  .form-input {
+    @apply w-full px-4 py-3 border border-gray-200 rounded-xl bg-white/70 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-primary-400/50 focus:border-primary-400 transition-all duration-300 text-gray-800 placeholder-gray-400;
+  }
+
+  /* ===== Buttons ===== */
+  .btn-primary {
+    @apply inline-flex items-center justify-center bg-gradient-to-l from-primary-500 to-primary-600 text-white font-bold rounded-xl px-6 py-3 shadow-lg shadow-primary-500/25 hover:shadow-xl hover:shadow-primary-500/30 hover:from-primary-600 hover:to-primary-700 active:scale-[0.98] transition-all duration-300 relative overflow-hidden;
+  }
+
+  .btn-primary::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-b from-white/20 to-transparent opacity-0 transition-opacity duration-300;
+  }
+
+  .btn-primary:hover::before {
+    @apply opacity-100;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center bg-white/80 backdrop-blur-sm text-primary-700 font-bold rounded-xl px-6 py-3 border-2 border-primary-300 shadow-sm hover:bg-primary-50 hover:border-primary-400 hover:shadow-md active:scale-[0.98] transition-all duration-300;
+  }
+
+  .btn-accent {
+    @apply inline-flex items-center justify-center bg-gradient-to-l from-green-500 to-green-600 text-white font-bold rounded-xl px-6 py-3 shadow-lg shadow-green-500/25 hover:shadow-xl hover:shadow-green-500/30 hover:from-green-600 hover:to-green-700 active:scale-[0.98] transition-all duration-300;
+  }
+
+  /* ===== Text Utilities ===== */
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-l from-primary-600 to-primary-800;
+  }
+
+  /* ===== Section Background ===== */
+  .section-warm {
+    @apply bg-gradient-to-b from-surface-50 via-primary-50/30 to-surface-50;
+  }
+
+  /* ===== Animation Delays ===== */
+  .delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .delay-400 {
+    animation-delay: 400ms;
+  }
+
+  .delay-500 {
+    animation-delay: 500ms;
+  }
+
+  .delay-600 {
+    animation-delay: 600ms;
+  }
+
+  /* ===== Gradient Border Effect ===== */
+  .gradient-border {
+    @apply relative;
+  }
+
+  .gradient-border::before {
+    content: '';
+    @apply absolute inset-0 rounded-2xl p-[1px] bg-gradient-to-b from-primary-300/60 to-primary-100/20;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* ===== Loading Spinner ===== */
+  .loading-spinner {
+    @apply inline-block w-5 h-5 border-2 border-white rounded-full border-t-transparent;
+    animation: spin 0.8s linear infinite;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

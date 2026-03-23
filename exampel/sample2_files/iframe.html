@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)https://matara.pro/nedarimplus/iframe/?language=en -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, minimal-ui"><link href="./css" rel="stylesheet"><title>
+
+</title>
+    <style>
+
+         .TextBox {
+             -webkit-appearance: none;
+            font-family: 'Assistant', sans-serif;
+            font-size:large;
+            color:black;
+            width:100%;
+            text-align:right;
+            padding:6px;
+            border:1px solid rgba(0,0,0,.125);
+            border-radius:2px;
+            box-sizing: content-box;
+           -webkit-box-sizing: border-box;
+           -moz-box-sizing: border-box; 
+           margin-top:2px;
+           outline: none;
+        }
+
+    </style>
+    <script>
+        function AddCss(cssId) {
+            if (!document.getElementById(cssId)) {
+                var head = document.getElementsByTagName('head')[0];
+                var link = document.createElement('link');
+                link.id = cssId;
+                link.rel = 'stylesheet';
+                link.type = 'text/css';
+                link.href = 'CSS/' + cssId + '.css';
+                link.media = 'all';
+                head.appendChild(link);
+            }
+        }
+
+        function GetURLParameter(sParam) {
+            var sPageURL = window.location.search.substring(1);
+            var sURLVariables = sPageURL.split('&');
+            for (var i = 0; i < sURLVariables.length; i++) {
+                var sParameterName = sURLVariables[i].split('=');
+                if (sParameterName[0].toLowerCase() == sParam.toLowerCase()) {
+                    return sParameterName[1];
+                }
+            }
+            return ''
+        }
+        window.onload = (function () {
+
+            if (GetURLParameter("style") == 'causematch') {
+                var all = document.getElementsByClassName('TextBox');
+                for (var i = 0; i < all.length; i++) {
+                    all[i].style.cssText = "color: #4A4A4A;border: solid 1px #979797;height: 55px;width: 100%;border-radius: 3px;background-color: #fff;border-left: solid #4451f5;";
+                }
+            }
+            if (GetURLParameter("style") == 'causematchnew') {
+                var all = document.getElementsByClassName('TextBox');
+                for (var i = 0; i < all.length; i++) {
+                    all[i].style.cssText = "height: 55px;width: 100%;border-radius: 5px;background-color: #fff;padding: 15px 20px;font-size: 15px;font-family: Heebo, sans-serif;color: #707070;border: 1px solid #CBCBCB;";
+                }
+            }
+            if (GetURLParameter("style") == 'givechak') {
+                AddCss('givechak')
+            }
+            if (GetURLParameter("style") == 'liveraiser') {
+                AddCss('liveraiser')
+            }
+            if (GetURLParameter("style") == 'asakim') {
+                AddCss('asakim')
+            }
+            if (GetURLParameter("style") == 'aleisiach') {
+                AddCss('aleisiach')
+            }
+
+            if (GetURLParameter("style") == 'baitCham') {
+                AddCss('baitCham')
+            }
+
+            if (GetURLParameter("style") == 'rashbi') {
+                AddCss('rashbi')
+            }
+
+            if (GetURLParameter("style") == 'appupgo') {
+                AddCss('appupgo')
+            }
+            if (GetURLParameter("style") == 'levsarah') {
+                AddCss('levsarah')
+            }
+
+            if (GetURLParameter("style") == 'vaad') {
+                AddCss('vaad')
+            }
+
+
+            if (GetURLParameter("Captcha") == '1') {
+                getCaptchaScript()
+            }
+
+            if (GetURLParameter("language") == 'en' || GetURLParameter("language") == 'ru') {
+                document.getElementById('CardLbl').innerText = 'Card Number:';
+                document.getElementById('TokefLbl').innerText = 'Expiration - MM/YY:';
+                document.getElementById("TokefTxt").placeholder = '';
+                document.getElementById('CvvLbl').innerText = 'CVV:'
+                document.getElementById('ZeoutLbl').innerText = 'Card holder ID (Zeout):'
+                document.getElementById('TashlumimLbl').innerText = 'Split the payment (installment):'
+
+                if  (GetURLParameter("language") == 'ru') {
+                    document.getElementById('CardLbl').innerText = 'Номер карты:';
+                    document.getElementById('TokefLbl').innerText = 'Срок действия - MM/YY:';
+                }
+
+                document.getElementById("MainDiv").dir = "ltr";
+
+                var all = document.getElementsByClassName('Language');
+                for (var i = 0; i < all.length; i++) {
+                    all[i].style.textAlign = 'left';
+                }
+
+
+                all = document.getElementsByClassName('TextBox');
+                for (var i = 0; i < all.length; i++) {
+                    all[i].style.textAlign = 'left';
+                }
+
+            }
+
+            if (GetURLParameter("Tokef").toLowerCase() == 'hide') {
+                document.getElementById('ClientTokefSpan').style.display = 'none';
+            }
+
+            if (GetURLParameter("CVV").toLowerCase() == 'hide') {
+                document.getElementById('ClientCVVSpan').style.display = 'none';
+            }
+
+            if (GetURLParameter("Picture").toLowerCase() == 'hide') {
+                document.getElementById('SecurityImg').style.display = 'none';
+            }
+
+            if (GetURLParameter("NeedZeout") == '1') {
+                document.getElementById('ClientZeoutSpan').style.display = 'block';
+            }
+
+            if (parseInt(GetURLParameter("MaxPayments")) > 1) {
+                document.getElementById('ClientTashlumimSpan').style.display = 'block';
+                var MaxPayments = GetURLParameter("MaxPayments");
+                if (parseInt(MaxPayments) > 36) MaxPayments = 36;
+                TashlumimSelect = document.getElementById('Tashlumim');
+                for (var i = 1; i < (parseInt(MaxPayments)+1) ; i++) {
+                    TashlumimSelect.options[TashlumimSelect.options.length] = new Option(i, i);
+                }
+            }
+        });
+
+        if (window.addEventListener) { window.addEventListener("message", ReadPostMessage, false); } else { window.attachEvent("onmessage", ReadPostMessage); }
+        function ReadPostMessage(event) {
+            switch (event.data.Name) {
+                case 'GetHeight':
+                    var Height = document.body.scrollHeight
+                    if (GetURLParameter("Captcha") == '1') Height += 250;
+                    event.source.postMessage({ 'Name': 'Height', 'Value': Height }, event.origin);
+                    break;
+                case 'ValidateFields':
+                    if (document.getElementById('CardTxt').value.replace(/ /gi, '') == '') { event.source.postMessage({ 'Name': 'ValidateFields', 'Field': 'Card', 'ErrorType': 'Empty' }, event.origin); return false; };
+                    if (NumericReg.test(document.getElementById('CardTxt').value.replace(/ /gi, '').replace(/-/gi, '')) == false) { event.source.postMessage({ 'Name': 'ValidateFields', 'Field': 'Card', 'ErrorType': 'Wrong' }, event.origin); return false; };
+
+                    if (document.getElementById('TokefTxt').value == '') { event.source.postMessage({ 'Name': 'ValidateFields', 'Field': 'Expiration', 'ErrorType': 'Empty' }, event.origin); return false; };
+                    if (NumericReg.test(document.getElementById('TokefTxt').value.replace(/ /gi, '').replace(/-/gi, '').replace(/\//gi, '')) == false) { event.source.postMessage({ 'Name': 'ValidateFields', 'Field': 'Expiration', 'ErrorType': 'Wrong' }, event.origin); return false; };
+
+                    if (document.getElementById('CvvTxt').value == '') { event.source.postMessage({ 'Name': 'ValidateFields', 'Field': 'CVV', 'ErrorType': 'Empty' }, event.origin); return false; };
+                    if (NumericReg.test(document.getElementById('CvvTxt').value.replace(/ /gi, '')) == false) { event.source.postMessage({ 'Name': 'ValidateFields', 'Field': 'CVV', 'ErrorType': 'Wrong' }, event.origin); return false; };
+
+                    event.source.postMessage({ 'Name': 'ValidateFields', 'Value': 'OK' }, event.origin);
+                    break;
+                case 'FinishTransaction':
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', '../V6/Files/WebServices/DebitIframe.aspx?Action=FinishTransaction');
+                    xhr.onreadystatechange = function () {
+                        if (this.readyState == 4) {if (this.status !== 200) { event.source.postMessage({ 'Name': 'TransactionResponse', 'Value': { 'Status': 'Error', 'Message': 'תקלה כללית. צד לקוח.' } }, event.origin); return false; };}
+                    };
+                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    xhr.timeout = 240000;
+                    xhr.onload = function () {
+                        if (xhr.status !== 200) { event.source.postMessage({ 'Name': 'TransactionResponse', 'Value': { 'Status': 'Error', 'Message': 'תקלה כללית. צד לקוח.' } }, event.origin); return false; }
+                        var JsonResponse = JSON.parse(xhr.responseText)
+                        if (JsonResponse.BackMessage == "NEED CAPTCHA") { try { getCaptchaScript(); event.source.postMessage({ 'Name': 'Height', 'Value': document.body.scrollHeight + 250 }, event.origin); } catch (err) { }; };
+                        if (JsonResponse.BackMessage == "CAPTCHA ERROR") { try { grecaptcha.reset() } catch (err) { } };
+                        event.source.postMessage({ 'Name': 'TransactionResponse', 'Value': JsonResponse }, event.origin)
+                    };
+                    var CaptchaResponse = '';
+                    if (recaptchaScript !== undefined) {
+                        CaptchaResponse = grecaptcha.getResponse(recaptchaData)
+                        if (CaptchaResponse == "") { CaptchaResponse = "empty" };
+                    }
+                    xhr.send("TransactionId=" + event.data.Value
+                        + "&CardNumber=" + encodeURIComponent(document.getElementById('CardTxt').value.replace(/ /gi, ''))
+                        + "&Tokef=" + encodeURIComponent(document.getElementById('TokefTxt').value)
+                        + "&CVV=" + encodeURIComponent(document.getElementById('CvvTxt').value)
+                        + "&Zeout=" + encodeURIComponent(document.getElementById('ZeoutTxt').value)
+                        + "&Tashlumim=" + encodeURIComponent(document.getElementById('Tashlumim').value)
+                        + "&CaptchaResponse=" + encodeURIComponent(CaptchaResponse)
+                        + "&AjaxId=" + Date.now()
+                    )
+                    break;
+                case 'FinishTransaction2':
+
+                    if (event.data.Value.Tokef !== undefined && event.data.Value.Tokef !== '') { document.getElementById('TokefTxt').value = event.data.Value.Tokef }
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', '../V6/Files/WebServices/DebitIframe.aspx?Action=FinishTransaction');
+                    xhr.onreadystatechange = function () {
+                        if (this.readyState == 4) {if (this.status !== 200) { event.source.postMessage({ 'Name': 'TransactionResponse', 'Value': { 'Status': 'Error', 'Message': 'תקלה כללית. צד לקוח.' } }, event.origin); return false; };}
+                    };
+                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    xhr.timeout = 240000;
+                    xhr.onload = function () {
+                        console.log(xhr.status);
+                        if (xhr.status !== 200) { event.source.postMessage({ 'Name': 'TransactionResponse', 'Value': { 'Status': 'Error', 'Message': 'תקלה כללית. צד לקוח.' } }, event.origin); return false; }
+                        if (xhr.responseText == '') { event.source.postMessage({ 'Name': 'TransactionResponse', 'Value': { 'Status': 'Error', 'Message': 'תקלה כללית. צד לקוח.' } }, event.origin); return false; }
+                        var JsonResponse = JSON.parse(xhr.responseText)
+                        if (JsonResponse.BackMessage == "NEED CAPTCHA") { try { getCaptchaScript(); event.source.postMessage({ 'Name': 'Height', 'Value': document.body.scrollHeight + 250 }, event.origin); } catch (err) { }; };
+                        if (JsonResponse.BackMessage == "CAPTCHA ERROR") { try { grecaptcha.reset() } catch (err) { } };
+                        event.source.postMessage({ 'Name': 'TransactionResponse', 'Value': JsonResponse }, event.origin)
+                    };
+                    var CaptchaResponse = '';
+                    if (recaptchaScript !== undefined) {
+                        CaptchaResponse = grecaptcha.getResponse(recaptchaData)
+                        if (CaptchaResponse == "") { CaptchaResponse = "empty" };
+                    }
+                    xhr.send("Mosad=" + encodeURIComponent(html_encode(event.data.Value.Mosad))
+                        + "&ApiValid=" + encodeURIComponent(html_encode(event.data.Value.ApiValid))
+                        + "&PaymentType=" + encodeURIComponent(html_encode(event.data.Value.PaymentType))
+                        + "&Currency=" + encodeURIComponent(html_encode(event.data.Value.Currency))
+                        + "&Zeout=" + encodeURIComponent(html_encode(event.data.Value.Zeout))
+                        + "&FirstName=" + encodeURIComponent(html_encode(event.data.Value.FirstName))
+                        + "&LastName=" + encodeURIComponent(html_encode(event.data.Value.LastName))
+                        + "&Street=" + encodeURIComponent(html_encode(event.data.Value.Street))
+                        + "&City=" + encodeURIComponent(html_encode(event.data.Value.City))
+                        + "&Phone=" + encodeURIComponent(html_encode(event.data.Value.Phone))
+                        + "&Mail=" + encodeURIComponent(html_encode(event.data.Value.Mail))
+                        + "&Amount=" + encodeURIComponent(html_encode(event.data.Value.Amount))
+                        + "&Tashlumim=" + encodeURIComponent(html_encode(event.data.Value.Tashlumim))
+                        + "&Groupe=" + encodeURIComponent(html_encode(event.data.Value.Groupe))
+                        + "&Comment=" + encodeURIComponent(html_encode(event.data.Value.Comment))
+                        + "&CallBack=" + encodeURIComponent(html_encode(event.data.Value.CallBack))
+                        + "&CallBackMailError=" + encodeURIComponent(html_encode(event.data.Value.CallBackMailError))
+                        + "&Param1=" + encodeURIComponent(html_encode(event.data.Value.Param1))
+                        + "&Param2=" + encodeURIComponent(html_encode(event.data.Value.Param2))
+                        + "&Day=" + encodeURIComponent(html_encode(event.data.Value.Day))
+                        + "&ThirdPartyReceipt=" + encodeURIComponent(html_encode(event.data.Value.ThirdPartyReceipt))
+                        + "&ForceUpdateMatching=" + encodeURIComponent(html_encode(event.data.Value.ForceUpdateMatching))
+                        + "&CardNumber=" + encodeURIComponent(html_encode(document.getElementById('CardTxt').value.replace(/ /gi, '')))
+                        + "&Tokef=" + encodeURIComponent(html_encode(document.getElementById('TokefTxt').value))
+                        + "&CVV=" + encodeURIComponent(html_encode(document.getElementById('CvvTxt').value))
+                        + "&CaptchaResponse=" + encodeURIComponent(CaptchaResponse)
+                        + "&AjaxId=" + Date.now()
+                        )
+
+                    break;            
+            }
+        }
+
+        var NumericReg = /^\d+$/;
+
+        function html_encode(str) {
+            var div = document.createElement("div");
+            div[("textContent" in div) ? "textContent" : "innerText"] = str;
+            return div.innerHTML;
+        }
+
+        var recaptchaData;
+        var recaptchaScript
+        var recaptchaCallback = function () {
+            recaptchaData = grecaptcha.render('CaptchaNedarim', { 'sitekey': '6LfFJngaAAAAAMke2q968QXNubZX52z6QAwJqxT1' });
+        }
+        function getCaptchaScript() {
+            if (recaptchaScript !== undefined) return false;
+            try {
+                recaptchaScript = document.createElement('script');
+                var prior = document.getElementsByTagName('script')[0];
+                recaptchaScript.async = 1;
+                recaptchaScript.onerror = function () { EAlertConfirm("שגיאה בהפעלת CAPTCHA") }
+                recaptchaScript.src = "https://www.google.com/recaptcha/api.js?onload=recaptchaCallback&render=explicit&hl=iw&?" + Date.now()
+                prior.parentNode.insertBefore(recaptchaScript, prior);
+            } catch (err) {
+                EAlertConfirm("שגיאה בהפעלת CAPTCHA. פנה לתמיכה: " + err.message)
+            }
+        }
+    </script>
+</head>
+<body style="margin:0;padding:0;font-family:Assistant,Arial;">
+    <div id="MainDiv" style="text-align:center;font-size:1rem;color:#25292d;height:100%;-webkit-box-sizing: border-box" dir="ltr">
+
+        <div id="ClientZeoutSpan" class="Language" style="vertical-align: top; text-align: left; margin: 15px 0px; min-width: 100%; box-sizing: border-box; display: none;">
+            <span id="ZeoutLbl" class="Language" style="text-align: left; min-width: 100%; margin-right: 1px; color: rgb(128, 128, 128);">Card holder ID (Zeout):</span><br>
+            <input id="ZeoutTxt" dir="ltr" type="tel" name="id" autocomplete="off" maxlength="15" class="TextBox" style="text-align: left;"><br>
+        </div>
+
+        <div id="ClientCardSpan" class="Language" style="vertical-align: top; text-align: left; margin: 15px 0px; min-width: 100%; box-sizing: border-box;">
+            <span id="CardLbl" class="Language" style="text-align: left; min-width: 100%; margin-right: 1px; color: rgb(128, 128, 128);">Card Number:</span><br>
+            <input id="CardTxt" dir="ltr" type="tel" name="cc-number" autocomplete="cc-number" maxlength="30" class="TextBox" style="text-align: left;"><br>
+        </div>
+
+        <div id="ClientTokefSpan" class="Language" style="vertical-align: top; text-align: left; margin: 15px 0px; min-width: 100%; box-sizing: border-box;">
+            <span id="TokefLbl" class="Language" style="text-align: left; width: 250px; margin-right: 1px; color: rgb(128, 128, 128);">Expiration - MM/YY:</span><br>
+            <input id="TokefTxt" dir="ltr" type="tel" name="cc-exp" autocomplete="cc-exp" maxlength="7" class="TextBox" placeholder="" style="text-align: left;"><br>
+        </div>
+
+        <div id="ClientCVVSpan" class="Language" style="vertical-align: top; text-align: left; margin: 15px 0px; min-width: 100%; box-sizing: border-box;">
+            <span id="CvvLbl" class="Language" style="text-align: left; width: 200px; margin-right: 1px; color: rgb(128, 128, 128);">CVV:</span><br>
+            <input id="CvvTxt" dir="ltr" type="tel" maxlength="4" name="cc-csc" autocomplete="cc-csc" class="TextBox" style="text-align: left;"><br>
+        </div>
+
+        <div id="ClientTashlumimSpan" class="Language" style="vertical-align: top; text-align: left; margin: 15px 0px; min-width: 100%; box-sizing: border-box; display: none;">
+            <span id="TashlumimLbl" class="Language" style="text-align: left; width: 200px; margin-right: 1px; color: rgb(128, 128, 128);">Split the payment (installment):</span><br>
+            <select name="Tashlumim" id="Tashlumim" class="TextBox" style="text-align: left;">
+            </select>
+        </div>
+        
+        <div id="CaptchaNedarim" style="display: inline-block;"></div>
+
+        <img id="SecurityImg" src="./Security.PNG" style="width:200px;max-width:80%;height:auto">
+    </div>
+
+
+</body></html>
