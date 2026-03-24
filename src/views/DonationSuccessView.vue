@@ -43,7 +43,7 @@
           <div class="bg-primary-50/40 rounded-2xl p-6 mb-8 border border-primary-100/30 animate-slide-up delay-300">
             <h2 class="text-lg font-bold text-gray-800 mb-3">שתפו את המצווה</h2>
             <p class="text-gray-500 mb-4 text-sm">שתפו את הזכות עם חברים ומשפחה ותסייעו למשפחות נזקקות</p>
-            <ShareButtons title="תרמתי כעת לקמחא דפסחא" text="הצטרפו אלי לתרומה לקמחא דפסחא לפסח - כולל שערי ניסים"
+            <ShareButtons title="תרמתי כעת לקמחא דפסחא" text="הצטרפו אלי לתרומה לקמחא דפסחא לפסח - המרכז הרוחני מים חיים"
               size="large" />
           </div>
 

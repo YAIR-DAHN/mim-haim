@@ -47,7 +47,7 @@ export default {
     },
     text: {
       type: String,
-      default: 'מכירת חמץ וקמחא דפסחא - כולל שערי ניסים'
+      default: 'מכירת חמץ וקמחא דפסחא - המרכז הרוחני מים חיים'
     },
     url: {
       type: String,

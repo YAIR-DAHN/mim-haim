@@ -167,7 +167,7 @@
             </router-link>
 
             <div class="mt-6">
-              <ShareButtons title="שתפו עם חברים ומשפחה" text="מכירת חמץ און-ליין וקמחא דפסחא - כולל שערי ניסים"
+              <ShareButtons title="שתפו עם חברים ומשפחה" text="מכירת חמץ און-ליין וקמחא דפסחא - המרכז הרוחני מים חיים"
                 size="medium" />
             </div>
           </div>
