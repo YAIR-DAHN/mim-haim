@@ -51,7 +51,7 @@ export default {
     },
     url: {
       type: String,
-      default: 'https://mehirat-hametz.vercel.app/'
+      default: 'https://mim-haim.vercel.app/'
     },
     size: {
       type: String,
